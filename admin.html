@@ -1,0 +1,1063 @@
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<title>Panel Privado de Cotizaciones | PowerUPS Empresa</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom-store.css?v=5" />
+		<style>
+			body {
+				background: #f1f5f9;
+			}
+			/* Pantalla de Login */
+			.auth-overlay {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				z-index: 99999;
+				padding: 20px;
+			}
+			.auth-card {
+				background: #ffffff;
+				border-radius: 16px;
+				padding: 36px 32px;
+				width: 100%;
+				max-width: 420px;
+				box-shadow: 0 20px 35px -5px rgba(0,0,0,0.3);
+				text-align: center;
+			}
+			.auth-card h3 {
+				color: #0f172a;
+				font-size: 1.4em;
+				margin-bottom: 8px;
+				font-weight: 800;
+			}
+			.auth-card p {
+				color: #64748b;
+				font-size: 0.9em;
+				margin-bottom: 24px;
+			}
+			.pin-input {
+				width: 100%;
+				padding: 14px 18px;
+				font-size: 1.3em;
+				letter-spacing: 4px;
+				text-align: center;
+				border: 2px solid #cbd5e1;
+				border-radius: 10px;
+				outline: none;
+				margin-bottom: 18px;
+				font-weight: 700;
+				transition: border-color 0.2s ease;
+			}
+			.pin-input:focus {
+				border-color: #0284c7;
+				box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+			}
+
+			/* Barra de métricas */
+			.company-header-bar {
+				background: #0f172a;
+				color: #ffffff;
+				padding: 16px 28px;
+				border-radius: 14px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 24px;
+				box-shadow: var(--shadow-md);
+			}
+			.admin-dashboard-card {
+				background: #ffffff;
+				border-radius: 12px;
+				padding: 18px 22px;
+				border: 1px solid var(--border-color);
+				box-shadow: var(--shadow-sm);
+				display: flex;
+				align-items: center;
+				gap: 16px;
+			}
+			.admin-dash-icon {
+				width: 46px;
+				height: 46px;
+				border-radius: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 20px;
+			}
+
+			/* Tarjeta de Cotización Individual */
+			.quote-crm-card {
+				background: #ffffff;
+				border-radius: 14px;
+				border: 1px solid var(--border-color);
+				padding: 22px 26px;
+				margin-bottom: 20px;
+				box-shadow: var(--shadow-sm);
+				transition: box-shadow 0.2s ease;
+			}
+			.quote-crm-card:hover {
+				box-shadow: var(--shadow-md);
+			}
+			.quote-crm-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				border-bottom: 1px solid #f1f5f9;
+				padding-bottom: 14px;
+				margin-bottom: 16px;
+				flex-wrap: wrap;
+				gap: 10px;
+			}
+			.quote-crm-grid {
+				display: grid;
+				grid-template-columns: 280px 1fr 240px;
+				gap: 22px;
+			}
+			.quote-client-box {
+				background: #f8fafc;
+				padding: 14px 18px;
+				border-radius: 10px;
+				border: 1px solid #e2e8f0;
+				font-size: 0.9em;
+			}
+			.quote-client-box p {
+				margin: 0 0 6px 0;
+				color: #334155;
+			}
+			.quote-items-box {
+				background: #ffffff;
+				font-size: 0.92em;
+			}
+			.quote-action-box {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+			}
+			.status-select {
+				padding: 8px 12px;
+				border-radius: 8px;
+				font-weight: 700;
+				font-size: 0.88em;
+				border: 1px solid #cbd5e1;
+				outline: none;
+				width: 100%;
+			}
+			.btn-action-wa {
+				background: #25d366;
+				color: #ffffff !important;
+				border: none;
+				padding: 9px 14px;
+				border-radius: 8px;
+				font-size: 0.88em;
+				font-weight: 700;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 6px;
+				text-decoration: none;
+				transition: background 0.2s;
+			}
+			.btn-action-wa:hover {
+				background: #128c7e;
+			}
+			.btn-action-mail {
+				background: #0284c7;
+				color: #ffffff !important;
+				border: none;
+				padding: 9px 14px;
+				border-radius: 8px;
+				font-size: 0.88em;
+				font-weight: 700;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 6px;
+				cursor: pointer;
+				transition: background 0.2s;
+			}
+			.btn-action-mail:hover {
+				background: #0369a1;
+			}
+
+			/* Pestañas del Backoffice */
+			.admin-tab-nav {
+				display: flex;
+				gap: 10px;
+				margin-bottom: 24px;
+				border-bottom: 2px solid #e2e8f0;
+			}
+			.admin-tab-btn {
+				background: transparent;
+				border: none;
+				border-bottom: 3px solid transparent;
+				color: #64748b;
+				font-weight: 700;
+				font-size: 0.95em;
+				padding: 12px 20px;
+				cursor: pointer;
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				transition: all 0.2s ease;
+				border-radius: 8px 8px 0 0;
+			}
+			.admin-tab-btn:hover {
+				color: #0284c7;
+				background: #f8fafc;
+			}
+			.admin-tab-btn.active {
+				color: #0284c7;
+				border-bottom-color: #0284c7;
+				background: #ffffff;
+			}
+			.product-manage-card {
+				background: #ffffff;
+				border-radius: 14px;
+				border: 1px solid var(--border-color);
+				padding: 18px 24px;
+				margin-bottom: 16px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 20px;
+				flex-wrap: wrap;
+				box-shadow: var(--shadow-sm);
+				transition: all 0.2s ease;
+			}
+			.product-manage-card:hover {
+				box-shadow: var(--shadow-md);
+				border-color: #cbd5e1;
+			}
+			.price-input-box {
+				display: inline-flex;
+				align-items: center;
+				background: #f8fafc;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 8px;
+				padding: 2px 10px;
+				transition: all 0.2s;
+			}
+			.price-input-box:focus-within {
+				border-color: #0284c7;
+				box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+				background: #ffffff;
+			}
+			.price-input-field {
+				border: none !important;
+				background: transparent !important;
+				font-weight: 800 !important;
+				font-size: 1.15em !important;
+				color: #0f172a !important;
+				width: 105px !important;
+				text-align: right !important;
+				padding: 6px 4px !important;
+				outline: none !important;
+			}
+			.admin-toast {
+				position: fixed;
+				bottom: 24px;
+				right: 24px;
+				background: #0f172a;
+				color: #ffffff;
+				padding: 14px 22px;
+				border-radius: 10px;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				z-index: 999999;
+				font-weight: 600;
+				font-size: 0.9em;
+				border-left: 4px solid #10b981;
+				transform: translateY(100px);
+				opacity: 0;
+				transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			.admin-toast.active {
+				transform: translateY(0);
+				opacity: 1;
+			}
+
+			@media screen and (max-width: 980px) {
+				.quote-crm-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+
+		<!-- Pantalla de Autenticación / PIN -->
+		<div id="auth-screen" class="auth-overlay">
+			<div class="auth-card">
+				<div style="width: 56px; height: 56px; background: #e0f2fe; color: #0284c7; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin: 0 auto 16px auto;">
+					<i class="icon solid fa-lock"></i>
+				</div>
+				<h3>Panel Exclusivo Empresa</h3>
+				<p>Ingresa el PIN de seguridad de la empresa para gestionar las cotizaciones recibidas.</p>
+
+				<form onsubmit="handleLogin(event)">
+					<input type="password" id="input-pin" class="pin-input" placeholder="••••" required autofocus maxlength="10" />
+					<div id="auth-error" style="display: none; color: #ef4444; font-size: 0.85em; margin-bottom: 14px; font-weight: 600;"></div>
+					<button type="submit" id="btn-login" class="button" style="width: 100%; justify-content: center; background: #0284c7; color: white;">
+						Acceder al Panel
+					</button>
+				</form>
+				<div style="margin-top: 18px; font-size: 0.8em; color: #94a3b8;">
+					PowerUPS Gestión Comercial Interna
+				</div>
+			</div>
+		</div>
+
+		<!-- Panel Privado Principal -->
+		<div id="main-panel" style="display: none; padding: 24px; max-width: 1240px; margin: 0 auto;">
+
+			<!-- Barra superior corporativa -->
+			<div class="company-header-bar">
+				<div style="display: flex; align-items: center; gap: 12px;">
+					<i class="icon solid fa-shield-alt" style="font-size: 28px; color: #38bdf8;"></i>
+					<div>
+						<h2 style="margin: 0; font-size: 1.35em; color: #ffffff; font-weight: 800;">PowerUPS Backoffice</h2>
+						<span style="font-size: 0.82em; color: #94a3b8;">Sistema de Control de Cotizaciones de la Empresa</span>
+					</div>
+				</div>
+				<div style="display: flex; gap: 10px; align-items: center;">
+					<a href="index.html" target="_blank" class="button small alt" style="color: #ffffff; border-color: #475569;">
+						<i class="icon solid fa-external-link-alt"></i> Ver Sitio Web
+					</a>
+					<button type="button" class="button small" onclick="refreshCurrentTab()" style="background: #0284c7; color: white;">
+						<i class="icon solid fa-sync-alt"></i> Actualizar
+					</button>
+					<button type="button" class="button small alt" onclick="handleLogout()" style="color: #ef4444; border-color: #ef4444;">
+						<i class="icon solid fa-sign-out-alt"></i> Salir
+					</button>
+				</div>
+			</div>
+
+			<!-- Navegación por pestañas del Backoffice -->
+			<div class="admin-tab-nav">
+				<button type="button" id="tab-btn-quotes" class="admin-tab-btn active" onclick="switchAdminTab('quotes')">
+					<i class="icon solid fa-file-invoice-dollar"></i> Cotizaciones Recibidas (<span id="tab-quotes-count">0</span>)
+				</button>
+				<button type="button" id="tab-btn-products" class="admin-tab-btn" onclick="switchAdminTab('products')">
+					<i class="icon solid fa-tags"></i> Ajuste de Precios e Inventario
+				</button>
+			</div>
+
+			<!-- VISTA 1: Cotizaciones Recibidas -->
+			<div id="view-quotes-section">
+
+			<!-- Métricas -->
+			<div class="row" style="margin-bottom: 24px;">
+				<div class="col-3 col-6-medium col-12-small">
+					<div class="admin-dashboard-card">
+						<div class="admin-dash-icon" style="background: #e0f2fe; color: #0284c7;">
+							<i class="icon solid fa-inbox"></i>
+						</div>
+						<div>
+							<div style="font-size: 1.6em; font-weight: 800; color: #0f172a;" id="stat-total">0</div>
+							<div style="font-size: 0.8em; color: #64748b; font-weight: 600;">Total Recibidas</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-3 col-6-medium col-12-small">
+					<div class="admin-dashboard-card">
+						<div class="admin-dash-icon" style="background: #fef3c7; color: #d97706;">
+							<i class="icon solid fa-clock"></i>
+						</div>
+						<div>
+							<div style="font-size: 1.6em; font-weight: 800; color: #0f172a;" id="stat-pendientes">0</div>
+							<div style="font-size: 0.8em; color: #64748b; font-weight: 600;">Por Atender</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-3 col-6-medium col-12-small">
+					<div class="admin-dashboard-card">
+						<div class="admin-dash-icon" style="background: #e0e7ff; color: #4338ca;">
+							<i class="icon solid fa-comments"></i>
+						</div>
+						<div>
+							<div style="font-size: 1.6em; font-weight: 800; color: #0f172a;" id="stat-contactados">0</div>
+							<div style="font-size: 0.8em; color: #64748b; font-weight: 600;">En Contacto</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-3 col-6-medium col-12-small">
+					<div class="admin-dashboard-card">
+						<div class="admin-dash-icon" style="background: #dcfce7; color: #16a34a;">
+							<i class="icon solid fa-check-circle"></i>
+						</div>
+						<div>
+							<div style="font-size: 1.6em; font-weight: 800; color: #0f172a;" id="stat-cerradas">0</div>
+							<div style="font-size: 0.8em; color: #64748b; font-weight: 600;">Cerradas / Vendidas</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Barra de Búsqueda y Filtros -->
+			<div class="catalog-filter-bar" style="background: #ffffff; border-radius: 12px;">
+				<div class="category-pills">
+					<button type="button" class="category-pill active" onclick="setFilter('todos', this)">Todas</button>
+					<button type="button" class="category-pill" onclick="setFilter('pendiente', this)">Pendientes</button>
+					<button type="button" class="category-pill" onclick="setFilter('contactado', this)">Contactados</button>
+					<button type="button" class="category-pill" onclick="setFilter('enviada', this)">Cotización Enviada</button>
+					<button type="button" class="category-pill" onclick="setFilter('cerrada', this)">Cerradas</button>
+				</div>
+				<div class="search-box-wrapper" style="min-width: 320px;">
+					<i class="icon solid fa-search"></i>
+					<input type="text" id="admin-search-input" placeholder="Buscar por cliente, teléfono, empresa o código..." oninput="handleSearch(this.value)" />
+				</div>
+			</div>
+
+			<!-- Listado de Solicitudes CRM -->
+			<div id="quotes-container">
+				<div style="text-align: center; padding: 50px; background: white; border-radius: 12px;">
+					<i class="icon solid fa-spinner fa-spin" style="font-size: 32px; color: #0284c7;"></i>
+					<p style="margin-top: 10px; color: #64748b;">Cargando solicitudes de cotización...</p>
+				</div>
+			</div>
+
+			</div> <!-- Fin view-quotes-section -->
+
+			<!-- VISTA 2: Gestión de Precios e Inventario -->
+			<div id="view-products-section" style="display: none;">
+				<div style="background: #ffffff; border-radius: 14px; border: 1px solid #e2e8f0; padding: 22px 26px; margin-bottom: 24px; box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+					<div>
+						<h3 style="margin: 0 0 4px 0; font-size: 1.25em; color: #0f172a; font-weight: 800;">
+							<i class="icon solid fa-tags" style="color: #0284c7;"></i> Precios de Venta de Equipos
+						</h3>
+						<p style="margin: 0; color: #64748b; font-size: 0.9em;">
+							Ajusta los precios unitarios en dólares (USD). Se actualizarán de inmediato en el catálogo de la tienda y en todas las cotizaciones de clientes.
+						</p>
+					</div>
+					<div>
+						<button type="button" class="button small" onclick="loadProductsAdmin()" style="background: #0284c7; color: white;">
+							<i class="icon solid fa-sync-alt"></i> Recargar Productos
+						</button>
+					</div>
+				</div>
+
+				<div id="products-admin-container">
+					<div style="text-align: center; padding: 50px; background: white; border-radius: 12px;">
+						<i class="icon solid fa-spinner fa-spin" style="font-size: 32px; color: #0284c7;"></i>
+						<p style="margin-top: 10px; color: #64748b;">Cargando catálogo de productos...</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Modal para Enviar Correo al Cliente -->
+		<div id="email-modal" class="quote-modal-overlay">
+			<div class="quote-modal-container" style="max-width: 600px;">
+				<div class="quote-modal-header">
+					<h3><i class="icon solid fa-envelope"></i> Enviar Cotización por Correo</h3>
+					<button type="button" class="quote-modal-close" onclick="closeEmailModal()">&times;</button>
+				</div>
+				<div class="quote-modal-body">
+					<form id="send-email-form" onsubmit="submitEmailResponse(event)">
+						<input type="hidden" id="mail-quote-id" />
+						<div class="form-group" style="margin-bottom: 12px;">
+							<label>Destinatario (Cliente):</label>
+							<input type="email" id="mail-to-address" readonly style="background: #f1f5f9;" />
+						</div>
+						<div class="form-group" style="margin-bottom: 12px;">
+							<label>Asunto:</label>
+							<input type="text" id="mail-subject" required />
+						</div>
+						<div class="form-group" style="margin-bottom: 12px;">
+							<label>Mensaje / Propuesta de Precios:</label>
+							<textarea id="mail-message" rows="6" required placeholder="Hola estimado cliente, le enviamos la cotización de los equipos solicitados:&#10;&#10;1. Mini UPS Shanpu: $XX&#10;2. Inversor 6kW: $XXX&#10;&#10;Incluye garantía de 1 año y envío inmediato..."></textarea>
+						</div>
+						<div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;">
+							<button type="button" class="button alt small" onclick="closeEmailModal()">Cancelar</button>
+							<button type="submit" id="btn-mail-submit" class="button small" style="background: #0284c7; color: white;">
+								<i class="icon solid fa-paper-plane"></i> Enviar al Cliente
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			let currentPin = '';
+			let quotesList = [];
+			let activeFilter = 'todos';
+			let activeQuery = '';
+
+			// Verificar si ya inició sesión
+			document.addEventListener('DOMContentLoaded', () => {
+				const savedPin = sessionStorage.getItem('company_admin_pin');
+				if (savedPin) {
+					currentPin = savedPin;
+					verifyPinAndLoad(savedPin);
+				}
+			});
+
+			async function handleLogin(e) {
+				e.preventDefault();
+				const pin = document.getElementById('input-pin').value.trim();
+				const btn = document.getElementById('btn-login');
+				const err = document.getElementById('auth-error');
+
+				btn.disabled = true;
+				btn.textContent = 'Verificando...';
+				err.style.display = 'none';
+
+				try {
+					const res = await fetch('/api/quotes/verify-pin', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ pin })
+					});
+
+					const data = await res.json();
+					if (res.ok && data.success) {
+						currentPin = pin;
+						sessionStorage.setItem('company_admin_pin', pin);
+						document.getElementById('auth-screen').style.display = 'none';
+						document.getElementById('main-panel').style.display = 'block';
+						loadQuotes();
+					} else {
+						err.textContent = 'PIN incorrecto. Revisa el valor configurado en .env';
+						err.style.display = 'block';
+					}
+				} catch (e) {
+					err.textContent = 'Error al verificar con el servidor';
+					err.style.display = 'block';
+				} finally {
+					btn.disabled = false;
+					btn.textContent = 'Acceder al Panel';
+				}
+			}
+
+			function verifyPinAndLoad(pin) {
+				fetch('/api/quotes/verify-pin', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ pin })
+				})
+				.then(r => r.json())
+				.then(d => {
+					if (d.success) {
+						document.getElementById('auth-screen').style.display = 'none';
+						document.getElementById('main-panel').style.display = 'block';
+						loadQuotes();
+					} else {
+						sessionStorage.removeItem('company_admin_pin');
+					}
+				})
+				.catch(() => sessionStorage.removeItem('company_admin_pin'));
+			}
+
+			function handleLogout() {
+				sessionStorage.removeItem('company_admin_pin');
+				location.reload();
+			}
+
+			async function loadQuotes() {
+				try {
+					const res = await fetch('/api/quotes', {
+						headers: { 'x-admin-pin': currentPin }
+					});
+
+					if (res.status === 401) {
+						handleLogout();
+						return;
+					}
+
+					const json = await res.json();
+					if (json.success) {
+						quotesList = json.data;
+						updateStats();
+						renderQuotes();
+					}
+				} catch (err) {
+					console.error('Error cargando cotizaciones:', err);
+				}
+			}
+
+			function updateStats() {
+				document.getElementById('stat-total').textContent = quotesList.length;
+				document.getElementById('stat-pendientes').textContent = quotesList.filter(q => q.status === 'pendiente').length;
+				document.getElementById('stat-contactados').textContent = quotesList.filter(q => q.status === 'contactado').length;
+				document.getElementById('stat-cerradas').textContent = quotesList.filter(q => q.status === 'cerrada').length;
+				const tabCount = document.getElementById('tab-quotes-count');
+				if (tabCount) tabCount.textContent = quotesList.length;
+			}
+
+			function setFilter(status, el) {
+				activeFilter = status;
+				document.querySelectorAll('.category-pills .category-pill').forEach(p => p.classList.remove('active'));
+				if (el) el.classList.add('active');
+				renderQuotes();
+			}
+
+			function handleSearch(val) {
+				activeQuery = val.trim().toLowerCase();
+				renderQuotes();
+			}
+
+			async function updateStatus(quoteId, newStatus) {
+				try {
+					const res = await fetch(`/api/quotes/${quoteId}`, {
+						method: 'PATCH',
+						headers: {
+							'Content-Type': 'application/json',
+							'x-admin-pin': currentPin
+						},
+						body: JSON.stringify({ status: newStatus })
+					});
+					if (res.ok) {
+						const q = quotesList.find(i => i.id === quoteId);
+						if (q) q.status = newStatus;
+						updateStats();
+						renderQuotes();
+					}
+				} catch (e) {
+					alert('Error actualizando estado');
+				}
+			}
+
+			async function saveNote(quoteId) {
+				const textarea = document.getElementById(`note-${quoteId}`);
+				if (!textarea) return;
+				const noteVal = textarea.value.trim();
+
+				try {
+					const res = await fetch(`/api/quotes/${quoteId}`, {
+						method: 'PATCH',
+						headers: {
+							'Content-Type': 'application/json',
+							'x-admin-pin': currentPin
+						},
+						body: JSON.stringify({ internalNotes: noteVal })
+					});
+					if (res.ok) {
+						const q = quotesList.find(i => i.id === quoteId);
+						if (q) q.internalNotes = noteVal;
+						alert('Nota interna guardada.');
+					}
+				} catch (e) {
+					alert('Error guardando nota');
+				}
+			}
+
+			function openEmailModal(quoteId, email, name) {
+				document.getElementById('mail-quote-id').value = quoteId;
+				document.getElementById('mail-to-address').value = email;
+				document.getElementById('mail-subject').value = `Cotización y Precios [${quoteId}] - PowerUPS`;
+				document.getElementById('mail-message').value = `Estimado(a) ${name},\n\nLe saludamos cordialmente de PowerUPS en respuesta a su solicitud de cotización [${quoteId}].\n\nA continuación le detallamos la disponibilidad y costos:\n- [Equipo]: $XX\n\nQuedamos a su entera disposición para coordinar la entrega o despejar cualquier duda técnica.`;
+				document.getElementById('email-modal').classList.add('active');
+			}
+
+			function closeEmailModal() {
+				document.getElementById('email-modal').classList.remove('active');
+			}
+
+			async function submitEmailResponse(e) {
+				e.preventDefault();
+				const quoteId = document.getElementById('mail-quote-id').value;
+				const subject = document.getElementById('mail-subject').value;
+				const customMessage = document.getElementById('mail-message').value;
+				const btn = document.getElementById('btn-mail-submit');
+
+				btn.disabled = true;
+				btn.textContent = 'Enviando...';
+
+				try {
+					const res = await fetch(`/api/quotes/${quoteId}/send-email`, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'x-admin-pin': currentPin
+						},
+						body: JSON.stringify({ subject, customMessage })
+					});
+					const json = await res.json();
+					if (res.ok && json.success) {
+						alert('¡Correo enviado con éxito al cliente!');
+						closeEmailModal();
+						loadQuotes();
+					} else {
+						alert('Error enviando correo: ' + (json.message || 'Error del servidor'));
+					}
+				} catch (err) {
+					alert('Error en conexión: ' + err.message);
+				} finally {
+					btn.disabled = false;
+					btn.textContent = 'Enviar al Cliente';
+				}
+			}
+
+			function renderQuotes() {
+				const container = document.getElementById('quotes-container');
+				let filtered = quotesList;
+
+				if (activeFilter !== 'todos') {
+					filtered = filtered.filter(q => q.status === activeFilter);
+				}
+
+				if (activeQuery) {
+					filtered = filtered.filter(q =>
+						q.id.toLowerCase().includes(activeQuery) ||
+						q.client.name.toLowerCase().includes(activeQuery) ||
+						q.client.phone.includes(activeQuery) ||
+						(q.client.company && q.client.company.toLowerCase().includes(activeQuery)) ||
+						(q.client.city && q.client.city.toLowerCase().includes(activeQuery))
+					);
+				}
+
+				if (filtered.length === 0) {
+					container.innerHTML = `
+						<div style="text-align: center; padding: 60px; background: white; border-radius: 12px;">
+							<i class="icon solid fa-folder-open" style="font-size: 40px; color: #cbd5e1; margin-bottom: 12px; display: block;"></i>
+							<h4 style="color: #475569;">No hay solicitudes registradas con este criterio</h4>
+						</div>
+					`;
+					return;
+				}
+
+				let html = '';
+				filtered.forEach(q => {
+					const dateObj = new Date(q.createdAt);
+					const dateStr = dateObj.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+					const itemsHtml = q.items.map(it => `
+						<div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 12px; margin-bottom: 6px;">
+							<strong>${it.productName}</strong>
+							<div style="color: #0284c7; font-weight: 700; font-size: 0.9em;">Cantidad: ${it.quantity} unid.</div>
+							${it.notes ? `<div style="font-size: 0.8em; color: #64748b;">Nota: ${it.notes}</div>` : ''}
+						</div>
+					`).join('');
+
+					const cleanPhone = q.client.phone.replace(/[^0-9]/g, '');
+					const waMsg = encodeURIComponent(`Hola ${q.client.name}, le saludamos de PowerUPS en referencia a su solicitud de cotización [${q.id}]. ¿En qué podemos ayudarle con los precios y disponibilidad de los equipos?`);
+					const waUrl = cleanPhone ? `https://wa.me/${cleanPhone}?text=${waMsg}` : '#';
+
+					html += `
+						<div class="quote-crm-card">
+							<div class="quote-crm-header">
+								<div>
+									<span style="font-size: 1.15em; font-weight: 800; color: #0284c7;">${q.id}</span>
+									<span style="color: #64748b; font-size: 0.85em; margin-left: 10px;">📅 ${dateStr}</span>
+								</div>
+								<div style="display: flex; align-items: center; gap: 10px;">
+									<span style="font-size: 0.82em; font-weight: 700; color: #475569;">Estado:</span>
+									<select class="status-select" onchange="updateStatus('${q.id}', this.value)" style="width: auto;">
+										<option value="pendiente" ${q.status === 'pendiente' ? 'selected' : ''}>⏳ Pendiente / Nueva</option>
+										<option value="contactado" ${q.status === 'contactado' ? 'selected' : ''}>💬 Contactado</option>
+										<option value="enviada" ${q.status === 'enviada' ? 'selected' : ''}>📄 Cotización Enviada</option>
+										<option value="cerrada" ${q.status === 'cerrada' ? 'selected' : ''}>✅ Cerrada / Vendida</option>
+										<option value="cancelada" ${q.status === 'cancelada' ? 'selected' : ''}>❌ Cancelada</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="quote-crm-grid">
+								<!-- Columna Cliente -->
+								<div class="quote-client-box">
+									<h4 style="margin: 0 0 10px 0; font-size: 1em; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px;">
+										<i class="icon solid fa-user"></i> Datos del Solicitante
+									</h4>
+									<p><strong>Nombre:</strong> ${q.client.name}</p>
+									<p><strong>Teléfono:</strong> <a href="tel:${q.client.phone}">${q.client.phone}</a></p>
+									${q.client.email ? `<p><strong>Email:</strong> <a href="mailto:${q.client.email}">${q.client.email}</a></p>` : '<p style="color: #94a3b8;"><em>Sin correo electrónico</em></p>'}
+									<p><strong>Ciudad / Ubicación:</strong> ${q.client.city || 'No especificada'}</p>
+									<p style="margin-top: 8px;">
+										${q.client.needsShipping ? '<span style="background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 0.85em; display: inline-block;">📦 Requiere Envío Nacional</span>' : '<span style="background: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 0.85em; display: inline-block;">🏬 Retiro / Entrega Local</span>'}
+									</p>
+								</div>
+
+								<!-- Columna Productos y Notas -->
+								<div class="quote-items-box">
+									<h4 style="margin: 0 0 10px 0; font-size: 1em; color: #0f172a; display: flex; justify-content: space-between;">
+										<span><i class="icon solid fa-boxes"></i> Equipo Solicitado</span>
+										<span style="color: #0284c7; font-weight: 800;">Total: $${Number(q.grandTotal || 0).toFixed(2)} USD</span>
+									</h4>
+									${q.items.map(it => `
+										<div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 12px; margin-bottom: 6px;">
+											<strong>${it.productName}</strong>
+											<div style="display: flex; justify-content: space-between; margin-top: 4px; font-size: 0.88em;">
+												<span style="color: #475569;">Cant: <strong>${it.quantity} unid.</strong> ($${Number(it.price || 0).toFixed(2)} c/u)</span>
+												<span style="color: #0284c7; font-weight: bold;">Subtotal: $${Number(it.total || (it.price * it.quantity)).toFixed(2)} USD</span>
+											</div>
+										</div>
+									`).join('')}
+
+									<div style="margin-top: 14px;">
+										<label style="font-size: 0.8em; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">
+											<i class="icon solid fa-sticky-note"></i> Notas Internas de la Empresa (solo visibles aquí):
+										</label>
+										<div style="display: flex; gap: 8px;">
+											<textarea id="note-${q.id}" rows="2" style="flex: 1; padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.85em;" placeholder="Ej: Se le ofreció precio con descuento por 10 piezas...">${q.internalNotes || ''}</textarea>
+											<button type="button" class="button alt small" onclick="saveNote('${q.id}')" style="align-self: flex-end; padding: 6px 12px; font-size: 0.8em;">
+												Guardar
+											</button>
+										</div>
+									</div>
+								</div>
+
+								<!-- Columna Acciones Rápidas -->
+								<div class="quote-action-box">
+									<h4 style="margin: 0 0 10px 0; font-size: 1em; color: #0f172a;">
+										<i class="icon solid fa-paper-plane"></i> Contacto y Seguimiento
+									</h4>
+
+									${cleanPhone ? `
+										<a href="${waUrl}" target="_blank" class="btn-action-wa">
+											<i class="icon brands fa-whatsapp" style="font-size: 1.2em;"></i> Abrir WhatsApp
+										</a>
+									` : ''}
+
+									${q.client.email ? `
+										<button type="button" class="btn-action-mail" onclick="openEmailModal('${q.id}', '${q.client.email}', '${q.client.name.replace(/'/g, "\\'")}')">
+											<i class="icon solid fa-envelope"></i> Redactar Correo
+										</button>
+									` : ''}
+
+									<button type="button" class="button alt small" onclick="window.print()" style="font-size: 0.82em;">
+										<i class="icon solid fa-print"></i> Imprimir Ficha
+									</button>
+								</div>
+							</div>
+						</div>
+					`;
+				});
+
+				container.innerHTML = html;
+			}
+
+			// ==========================================
+			// GESTIÓN DE PRECIOS E INVENTARIO
+			// ==========================================
+			let currentAdminTab = 'quotes';
+			let productsList = [];
+
+			function switchAdminTab(tab) {
+				currentAdminTab = tab;
+				const btnQuotes = document.getElementById('tab-btn-quotes');
+				const btnProducts = document.getElementById('tab-btn-products');
+				const viewQuotes = document.getElementById('view-quotes-section');
+				const viewProducts = document.getElementById('view-products-section');
+
+				if (tab === 'quotes') {
+					btnQuotes.classList.add('active');
+					btnProducts.classList.remove('active');
+					viewQuotes.style.display = 'block';
+					viewProducts.style.display = 'none';
+				} else {
+					btnQuotes.classList.remove('active');
+					btnProducts.classList.add('active');
+					viewQuotes.style.display = 'none';
+					viewProducts.style.display = 'block';
+					loadProductsAdmin();
+				}
+			}
+
+			function refreshCurrentTab() {
+				if (currentAdminTab === 'quotes') {
+					loadQuotes();
+				} else {
+					loadProductsAdmin();
+				}
+			}
+
+			async function loadProductsAdmin() {
+				const container = document.getElementById('products-admin-container');
+				if (!container) return;
+
+				container.innerHTML = `
+					<div style="text-align: center; padding: 40px; background: white; border-radius: 12px;">
+						<i class="icon solid fa-spinner fa-spin" style="font-size: 28px; color: #0284c7;"></i>
+						<p style="margin-top: 8px; color: #64748b;">Obteniendo productos y precios...</p>
+					</div>
+				`;
+
+				try {
+					const res = await fetch('/api/products');
+					const json = await res.json();
+
+					if (json.success && Array.isArray(json.data)) {
+						productsList = json.data;
+						renderProductsAdmin();
+					} else {
+						container.innerHTML = '<div style="background: white; padding: 30px; text-align: center; color: #ef4444;">Error al cargar productos</div>';
+					}
+				} catch (err) {
+					console.error('Error cargando productos:', err);
+					container.innerHTML = '<div style="background: white; padding: 30px; text-align: center; color: #ef4444;">Error de conexión con el servidor</div>';
+				}
+			}
+
+			function renderProductsAdmin() {
+				const container = document.getElementById('products-admin-container');
+				if (!container) return;
+
+				if (productsList.length === 0) {
+					container.innerHTML = '<div style="background: white; padding: 30px; text-align: center; color: #64748b;">No hay productos registrados en el sistema.</div>';
+					return;
+				}
+
+				let html = '';
+				productsList.forEach(p => {
+					const priceVal = Number(p.price || 0).toFixed(2);
+					const isMiniUps = p.category === 'mini-ups';
+					const badgeText = isMiniUps ? 'Mini UPS' : 'Inversor Solar';
+					const badgeColor = isMiniUps ? '#0284c7' : '#f59e0b';
+
+					html += `
+						<div class="product-manage-card">
+							<!-- Imagen y Datos del Producto -->
+							<div style="display: flex; align-items: center; gap: 16px; flex: 1; min-width: 280px;">
+								<img src="${p.mainImage}" alt="${p.name}" style="width: 72px; height: 72px; object-fit: contain; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 4px; flex-shrink: 0;" />
+								<div>
+									<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+										<span style="font-size: 0.75em; font-weight: 700; color: #64748b; text-transform: uppercase;">${p.brand} • ${p.model}</span>
+										<span style="background: ${badgeColor}15; color: ${badgeColor}; border: 1px solid ${badgeColor}30; padding: 2px 8px; border-radius: 4px; font-size: 0.72em; font-weight: 700;">${badgeText}</span>
+									</div>
+									<h4 style="margin: 0 0 4px 0; font-size: 1.05em; color: #0f172a; font-weight: 800;">${p.name}</h4>
+									<p style="margin: 0; font-size: 0.82em; color: #64748b;">${p.tagline || ''}</p>
+								</div>
+							</div>
+
+							<!-- Controles de Edición de Precio y Stock -->
+							<div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+								<!-- Ajuste de Precio -->
+								<div>
+									<label style="display: block; font-size: 0.78em; font-weight: 700; color: #475569; margin-bottom: 4px;">
+										Precio Unitario (USD):
+									</label>
+									<div class="price-input-box">
+										<span style="font-weight: 800; color: #0284c7; font-size: 1.1em; margin-right: 2px;">$</span>
+										<input type="number" step="0.01" min="0" id="prod-price-${p.id}" class="price-input-field" value="${priceVal}" />
+										<span style="font-size: 0.8em; font-weight: 700; color: #64748b; margin-left: 4px;">USD</span>
+									</div>
+								</div>
+
+								<!-- Estado de Disponibilidad -->
+								<div>
+									<label style="display: block; font-size: 0.78em; font-weight: 700; color: #475569; margin-bottom: 4px;">
+										Inventario:
+									</label>
+									<select id="prod-stock-${p.id}" style="height: 38px; padding: 6px 10px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 0.85em; font-weight: 700; background: white;">
+										<option value="true" ${p.inStock !== false ? 'selected' : ''}>✅ En Stock</option>
+										<option value="false" ${p.inStock === false ? 'selected' : ''}>❌ Agotado</option>
+									</select>
+								</div>
+
+								<!-- Botones de Acción -->
+								<div style="display: flex; gap: 8px; align-self: flex-end;">
+									<button type="button" id="btn-save-prod-${p.id}" class="button small" onclick="saveProductPrice('${p.id}')" style="background: #0284c7; color: white; border-radius: 8px; height: 38px; padding: 0 16px; font-weight: 700;">
+										<i class="icon solid fa-save"></i> Guardar
+									</button>
+									<a href="producto.html?id=${p.id}" target="_blank" class="button small alt" title="Ver ficha en la tienda" style="border-radius: 8px; height: 38px; padding: 0 12px; display: inline-flex; align-items: center;">
+										<i class="icon solid fa-external-link-alt"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					`;
+				});
+
+				container.innerHTML = html;
+			}
+
+			async function saveProductPrice(id) {
+				const priceInput = document.getElementById(`prod-price-${id}`);
+				const stockSelect = document.getElementById(`prod-stock-${id}`);
+				const saveBtn = document.getElementById(`btn-save-prod-${id}`);
+				if (!priceInput) return;
+
+				const priceVal = parseFloat(priceInput.value);
+				if (isNaN(priceVal) || priceVal < 0) {
+					alert('Por favor ingresa un precio numérico válido mayor o igual a 0');
+					return;
+				}
+
+				const inStockVal = stockSelect ? stockSelect.value === 'true' : true;
+
+				if (saveBtn) {
+					saveBtn.disabled = true;
+					saveBtn.innerHTML = '<i class="icon solid fa-spinner fa-spin"></i> Guardando...';
+				}
+
+				try {
+					const res = await fetch(`/api/products/${id}/price`, {
+						method: 'PUT',
+						headers: {
+							'Content-Type': 'application/json',
+							'x-admin-pin': currentPin
+						},
+						body: JSON.stringify({
+							price: priceVal,
+							inStock: inStockVal
+						})
+					});
+
+					const data = await res.json();
+					if (res.ok && data.success) {
+						if (saveBtn) {
+							saveBtn.style.background = '#10b981';
+							saveBtn.innerHTML = '<i class="icon solid fa-check"></i> ¡Guardado!';
+							setTimeout(() => {
+								saveBtn.disabled = false;
+								saveBtn.style.background = '#0284c7';
+								saveBtn.innerHTML = '<i class="icon solid fa-save"></i> Guardar';
+							}, 2000);
+						}
+
+						const p = productsList.find(x => x.id === id);
+						if (p) {
+							p.price = priceVal;
+							p.inStock = inStockVal;
+						}
+
+						showAdminToast(`Precio actualizado: $${priceVal.toFixed(2)} USD para ${data.data.name}`);
+					} else {
+						alert('Error: ' + (data.message || 'No se pudo actualizar el precio'));
+						if (saveBtn) {
+							saveBtn.disabled = false;
+							saveBtn.innerHTML = '<i class="icon solid fa-save"></i> Guardar';
+						}
+					}
+				} catch (err) {
+					alert('Error al comunicarse con el servidor: ' + err.message);
+					if (saveBtn) {
+						saveBtn.disabled = false;
+						saveBtn.innerHTML = '<i class="icon solid fa-save"></i> Guardar';
+					}
+				}
+			}
+
+			function showAdminToast(msg) {
+				let toast = document.getElementById('admin-toast-el');
+				if (!toast) {
+					toast = document.createElement('div');
+					toast.id = 'admin-toast-el';
+					toast.className = 'admin-toast';
+					document.body.appendChild(toast);
+				}
+
+				toast.innerHTML = `<i class="icon solid fa-check-circle" style="color: #10b981; font-size: 18px;"></i> <span>${msg}</span>`;
+				toast.classList.add('active');
+
+				setTimeout(() => {
+					toast.classList.remove('active');
+				}, 3500);
+			}
+		</script>
+
+	</body>
+</html>

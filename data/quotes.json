@@ -1,0 +1,140 @@
+[
+  {
+    "id": "COT-2026-6911",
+    "createdAt": "2026-10-21T14:01:34.064Z",
+    "status": "pendiente",
+    "client": {
+      "name": "Eduardo Barrera",
+      "email": "eduardoimanol@gmail.com",
+      "phone": "0424-4097970",
+      "city": "Valencia Carabobo",
+      "needsShipping": false
+    },
+    "items": [
+      {
+        "productId": "mini-ups-shanpu-dc1018p",
+        "productName": "Mini UPS DC Shanpu DC1018P (10400 mAh)",
+        "model": "DC1018P-10400mAh",
+        "brand": "Shanpu",
+        "image": "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.55 AM.jpeg",
+        "warranty": "6 meses de garantía directa",
+        "price": 25,
+        "quantity": 1,
+        "total": 25
+      }
+    ],
+    "grandTotal": 25,
+    "currency": "USD",
+    "internalNotes": "",
+    "history": [
+      {
+        "action": "Cotización automática generada y enviada al cliente",
+        "timestamp": "2026-10-21T14:01:34.064Z"
+      }
+    ]
+  },
+  {
+    "id": "COT-2026-5065",
+    "createdAt": "2026-10-15T16:16:12.971Z",
+    "status": "pendiente",
+    "client": {
+      "name": "Eduardo Toro",
+      "email": "etoro5634@gmail.com",
+      "phone": "04126683896",
+      "city": "Valencia Carabobo",
+      "needsShipping": false
+    },
+    "items": [
+      {
+        "productId": "mini-ups-shanpu-dc1018p",
+        "productName": "Mini UPS DC Shanpu DC1018P (10400 mAh)",
+        "model": "DC1018P-10400mAh",
+        "brand": "Shanpu",
+        "image": "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.55 AM.jpeg",
+        "warranty": "6 meses de garantía directa",
+        "price": 25,
+        "quantity": 1,
+        "total": 25
+      }
+    ],
+    "grandTotal": 25,
+    "currency": "USD",
+    "internalNotes": "",
+    "history": [
+      {
+        "action": "Cotización automática generada y enviada al cliente",
+        "timestamp": "2026-10-15T16:16:12.971Z"
+      }
+    ]
+  },
+  {
+    "id": "COT-2026-1446",
+    "createdAt": "2026-10-15T16:07:54.173Z",
+    "status": "pendiente",
+    "client": {
+      "name": "Valeria Gomez",
+      "email": "valeria.gomez@gmail.com",
+      "phone": "+584145551234",
+      "city": "Maracaibo",
+      "needsShipping": true
+    },
+    "items": [
+      {
+        "productId": "mini-ups-wgp-30wdl",
+        "productName": "Mini UPS Inteligente WGP 30WDL (115.44 Wh)",
+        "model": "30WDL / Maxora 30W",
+        "brand": "WGP (Wonderful Green Power)",
+        "image": "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM (2).jpeg",
+        "warranty": "12 meses de garantía directa",
+        "price": 45,
+        "quantity": 2,
+        "total": 90
+      }
+    ],
+    "grandTotal": 90,
+    "currency": "USD",
+    "internalNotes": "",
+    "history": [
+      {
+        "action": "Cotización automática generada y enviada al cliente",
+        "timestamp": "2026-10-15T16:07:54.173Z"
+      }
+    ]
+  },
+  {
+    "id": "COT-2026-9786",
+    "createdAt": "2026-10-15T13:56:30.536Z",
+    "status": "pendiente",
+    "client": {
+      "name": "Alejandro Morales",
+      "phone": "+584129998877",
+      "email": "alejandro@empresa.com",
+      "company": "Soluciones TI Caracas",
+      "city": "Caracas"
+    },
+    "items": [
+      {
+        "productId": "mini-ups-shanpu-dc1018p",
+        "productName": "Mini UPS DC Shanpu DC1018P (10400 mAh)",
+        "quantity": 5,
+        "model": "",
+        "notes": ""
+      },
+      {
+        "productId": "inversor-solar-hibrido-anern-6kw",
+        "productName": "Inversor Solar Híbrido Anern 6kW",
+        "quantity": 1,
+        "model": "",
+        "notes": ""
+      }
+    ],
+    "comments": "Necesito 5 Mini UPS para modem de fibra optica y 1 Inversor 6kW.",
+    "history": [
+      {
+        "action": "creada",
+        "timestamp": "2026-10-15T13:56:30.536Z",
+        "details": "Solicitud enviada desde la página web"
+      }
+    ]
+  }
+]

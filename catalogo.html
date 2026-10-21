@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<title>Catálogo de Equipos | PowerUPS - Mini UPS e Inversores</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Explora nuestro catálogo de Mini UPS para routers, módems e inversores solares híbridos de alta eficiencia. Cotiza en línea con respuesta por WhatsApp." />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom-store.css?v=6" />
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header Wrapper -->
+				<div id="header-wrapper">
+					<div class="container">
+
+						<!-- Header -->
+							<header id="header">
+								<div class="inner">
+
+									<!-- Logo -->
+										<h1>
+											<a href="index.html" id="logo">
+												<i class="icon solid fa-bolt" style="color: #38bdf8; margin-right: 6px;"></i>PowerUPS
+											</a>
+										</h1>
+
+									<!-- Nav -->
+										<nav id="nav">
+											<ul>
+												<li><a href="index.html">Inicio</a></li>
+												<li class="current_page_item"><a href="catalogo.html">Catálogo Completo</a></li>
+												<li>
+													<a href="#">Categorías</a>
+													<ul>
+														<li><a href="catalogo.html?category=mini-ups">Mini UPS para Routers</a></li>
+														<li><a href="catalogo.html?category=inversores">Inversores Solares Híbridos</a></li>
+													</ul>
+												</li>
+												<li><a href="nosotros.html">Sobre Nosotros</a></li>
+												<li>
+													<a href="javascript:void(0)" onclick="QuoteModal.open('mini-ups-shanpu-dc1018p')" style="font-weight: 700; color: #38bdf8;">
+														<i class="icon solid fa-file-invoice-dollar"></i> Cotizar Equipo
+													</a>
+												</li>
+											</ul>
+										</nav>
+
+								</div>
+							</header>
+
+					</div>
+				</div>
+
+			<!-- Main Wrapper -->
+				<div id="main-wrapper">
+					<div class="wrapper style2">
+						<div class="inner">
+							<div class="container">
+								<div id="content">
+
+									<header class="major" style="text-align: center; margin-bottom: 30px;">
+										<h2>Catálogo de Equipos de Respaldo</h2>
+										<p>Selecciona los modelos que deseas cotizar o consulta sus fichas técnicas detalladas.</p>
+									</header>
+
+									<!-- Barra de Filtros y Búsqueda -->
+									<div class="catalog-filter-bar">
+										<div class="category-pills">
+											<button type="button" class="category-pill active" data-category="all" onclick="filterCatalog('all', this)">
+												Todos (<span id="count-all">0</span>)
+											</button>
+											<button type="button" class="category-pill" data-category="mini-ups" onclick="filterCatalog('mini-ups', this)">
+												Mini UPS Routers (<span id="count-mini-ups">0</span>)
+											</button>
+											<button type="button" class="category-pill" data-category="inversores" onclick="filterCatalog('inversores', this)">
+												Inversores Híbridos (<span id="count-inversores">0</span>)
+											</button>
+										</div>
+										<div class="search-box-wrapper">
+											<i class="icon solid fa-search"></i>
+											<input type="text" id="catalog-search" placeholder="Buscar por modelo, marca o capacidad..." oninput="handleSearch(this.value)" />
+										</div>
+									</div>
+
+									<!-- Grid de Productos -->
+									<div id="catalog-grid" class="row">
+										<!-- Se cargará dinámicamente desde /api/products -->
+										<div class="col-12" style="text-align: center; padding: 50px;">
+											<i class="icon solid fa-spinner fa-spin" style="font-size: 32px; color: #0284c7;"></i>
+											<p style="margin-top: 10px; color: #64748b;">Cargando catálogo de productos...</p>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- Footer Wrapper -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="col-4 col-6-medium col-12-small">
+								<section>
+									<h2>PowerUPS Tienda</h2>
+									<p>Encuentra el equipo exacto para proteger tus aparatos contra fluctuaciones y apagones prolongados.</p>
+								</section>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<section>
+									<h2>Navegación</h2>
+									<ul class="divided">
+										<li><a href="index.html">Página Principal</a></li>
+										<li><a href="catalogo.html">Catálogo Completo</a></li>
+										<li><a href="javascript:void(0)" onclick="QuoteCart.openModal()">Revisar mi Cotización</a></li>
+										<li><a href="nosotros.html">Sobre Nosotros</a></li>
+									</ul>
+								</section>
+							</div>
+							<div class="col-4 col-12-medium">
+								<section>
+									<h2>Atención Directa</h2>
+									<p>¿Requieres un pedido por volumen o distribución al mayor? Contáctanos a través de nuestro cotizador para recibir precios especiales.</p>
+								</section>
+							</div>
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; PowerUPS. Todos los derechos reservados.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/quote-cart.js?v=7"></script>
+
+		<!-- Lógica del Catálogo Dinámico -->
+		<script>
+			let allProducts = [];
+			let activeCategory = 'all';
+			let activeSearch = '';
+
+			async function loadCatalog() {
+				try {
+					const res = await fetch('/api/products');
+					const json = await res.json();
+					if (json.success) {
+						allProducts = json.data;
+						updateCounts();
+
+						// Verificar si viene una categoría por URL
+						const urlParams = new URLSearchParams(window.location.search);
+						const catParam = urlParams.get('category');
+						if (catParam) {
+							activeCategory = catParam;
+							const pill = document.querySelector(`.category-pill[data-category="${catParam}"]`);
+							if (pill) {
+								document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+								pill.classList.add('active');
+							}
+						}
+
+						renderCatalog();
+					}
+				} catch (err) {
+					console.error('Error al cargar productos:', err);
+					document.getElementById('catalog-grid').innerHTML = `
+						<div class="col-12" style="text-align: center; color: #ef4444; padding: 40px;">
+							<p>Error de conexión al cargar el catálogo de productos.</p>
+						</div>
+					`;
+				}
+			}
+
+			function updateCounts() {
+				document.getElementById('count-all').textContent = allProducts.length;
+				document.getElementById('count-mini-ups').textContent = allProducts.filter(p => p.category === 'mini-ups').length;
+				document.getElementById('count-inversores').textContent = allProducts.filter(p => p.category === 'inversores').length;
+			}
+
+			function filterCatalog(category, el) {
+				activeCategory = category;
+				document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+				if (el) el.classList.add('active');
+				renderCatalog();
+			}
+
+			function handleSearch(val) {
+				activeSearch = val.trim().toLowerCase();
+				renderCatalog();
+			}
+
+			function renderCatalog() {
+				const grid = document.getElementById('catalog-grid');
+				let filtered = allProducts;
+
+				if (activeCategory !== 'all') {
+					filtered = filtered.filter(p => p.category === activeCategory);
+				}
+
+				if (activeSearch) {
+					filtered = filtered.filter(p =>
+						p.name.toLowerCase().includes(activeSearch) ||
+						p.tagline.toLowerCase().includes(activeSearch) ||
+						p.brand.toLowerCase().includes(activeSearch) ||
+						(p.model && p.model.toLowerCase().includes(activeSearch))
+					);
+				}
+
+				if (filtered.length === 0) {
+					grid.innerHTML = `
+						<div class="col-12" style="text-align: center; padding: 60px 20px;">
+							<i class="icon solid fa-search" style="font-size: 40px; color: #cbd5e1; margin-bottom: 12px; display: block;"></i>
+							<h3 style="color: #475569;">No se encontraron productos</h3>
+							<p style="color: #94a3b8;">Prueba con otra palabra clave o selecciona otra categoría.</p>
+						</div>
+					`;
+					return;
+				}
+
+				let html = '';
+				filtered.forEach(p => {
+					const chips = (p.highlights || []).slice(0, 3).map(h => `<span class="spec-chip">${h}</span>`).join('');
+
+					html += `
+						<div class="col-4 col-12-medium" style="margin-bottom: 30px;">
+							<div class="product-card">
+								<div class="product-card-image-wrapper">
+									<img src="${p.mainImage}" alt="${p.name}" />
+									<span class="product-badge-stock"><i class="icon solid fa-check"></i> Disponible</span>
+									<span class="product-badge-category">${p.category === 'mini-ups' ? 'Mini UPS' : 'Inversor Solar'}</span>
+								</div>
+								<div class="product-card-body">
+									<div class="product-card-brand">${p.brand} • ${p.model}</div>
+									<h3 class="product-card-title">${p.name}</h3>
+									<p class="product-card-tagline">${p.tagline}</p>
+									<div class="product-specs-chips">
+										${chips}
+									</div>
+									<div class="product-card-actions">
+										<a href="producto.html?id=${p.id}" class="btn-detail">
+											<i class="icon solid fa-info-circle"></i> Ficha Técnica
+										</a>
+										<button type="button" class="btn-quote-add" onclick="QuoteModal.open('${p.id}')">
+											<i class="icon solid fa-file-invoice-dollar"></i> Cotizar
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					`;
+				});
+
+				grid.innerHTML = html;
+			}
+
+			document.addEventListener('DOMContentLoaded', loadCatalog);
+		</script>
+
+	</body>
+</html>

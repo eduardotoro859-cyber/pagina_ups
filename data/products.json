@@ -1,0 +1,139 @@
+[
+  {
+    "id": "mini-ups-shanpu-dc1018p",
+    "name": "Mini UPS DC Shanpu DC1018P (10400 mAh)",
+    "slug": "mini-ups-dc-shanpu-dc1018p",
+    "brand": "Shanpu",
+    "model": "DC1018P-10400mAh",
+    "category": "mini-ups",
+    "categoryLabel": "Mini UPS para Routers y Módem",
+    "tagline": "Respaldo ininterrumpido inteligente para routers, módems, cámaras y puntos de venta.",
+    "description": "Mini UPS compacto de corriente continua (DC UPS) diseñado para mantener encendido tu módem WiFi, router de fibra óptica (ONU), cámaras de seguridad o dispositivos móviles durante cortes de energía eléctrica. Cuenta con protección contra cortocircuitos, selector de voltaje múltiple y puertos POE/LAN.",
+    "featured": true,
+    "inStock": true,
+    "price": 35,
+    "currency": "USD",
+    "warranty": "6 meses de garantía directa",
+    "rating": 4.9,
+    "reviewCount": 38,
+    "mainImage": "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.55 AM.jpeg",
+    "gallery": [
+      "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.55 AM.jpeg",
+      "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.55 AM (1).jpeg",
+      "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM.jpeg"
+    ],
+    "highlights": [
+      "Batería de alta capacidad de 10,400 mAh (4 celdas x 2600 mAh)",
+      "Múltiples voltajes de salida: 5V, 9V, 12V DC y USB",
+      "Puerto POE seleccionable 15V / 24V y puerto LAN",
+      "Onda sinusoidal pura y arranque automático instantáneo sin corte",
+      "Indicadores luminosos LED suaves y botón ergonómico antierror"
+    ],
+    "specs": {
+      "tipo": "DC UPS Monofásico",
+      "potenciaNominal": "18W",
+      "capacidadBateria": "10,400 mAh (4x 2600 mAh litio)",
+      "energiaElectrica": "38.48 Wh",
+      "voltajesSalida": "USB 5V, DC 9V, DC 12V, POE 15V/24V",
+      "formaDeOnda": "Onda sinusoidal pura",
+      "frecuencia": "50/60 Hz",
+      "proteccion": "Cortocircuito, sobrecarga y sobredescarga",
+      "dimensiones": "160 x 105 x 33 mm",
+      "peso": "0.55 kg",
+      "color": "Negro",
+      "aplicaciones": "Routers WiFi, Módem ONU, Switches, Cámaras CCTV, Teléfonos IP"
+    }
+  },
+  {
+    "id": "mini-ups-wgp-30wdl",
+    "name": "Mini UPS Inteligente WGP 30WDL (115.44 Wh)",
+    "slug": "mini-ups-inteligente-wgp-30wdl",
+    "brand": "WGP (Wonderful Green Power)",
+    "model": "30WDL / Maxora 30W",
+    "category": "mini-ups",
+    "categoryLabel": "Mini UPS para Routers y Módem",
+    "tagline": "Hasta 12+ horas de energía continua con 4 salidas simultáneas y carga rápida QC 3.0.",
+    "description": "El Mini UPS de alta capacidad WGP 30WDL ofrece una enorme reserva energética de 115.44 Wh con batería de litio de grado premium. Diseñado para alimentar simultáneamente router + módem ONU + cámara con 4 salidas dedicadas (12V, 12V, 9V y USB QC 3.0). Cero tiempo de transferencia para que tu internet nunca se caiga.",
+    "featured": true,
+    "inStock": true,
+    "price": 45,
+    "currency": "USD",
+    "warranty": "12 meses de garantía directa",
+    "rating": 5,
+    "reviewCount": 54,
+    "mainImage": "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM (2).jpeg",
+    "gallery": [
+      "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM (2).jpeg",
+      "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM (1).jpeg",
+      "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM (3).jpeg",
+      "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM (4).jpeg"
+    ],
+    "highlights": [
+      "Respaldo prolongado de más de 12 horas seguidas de internet",
+      "Capacidad ultra extendida de 115.44 Wh",
+      "4 puertos de salida simultáneos (2x 12V 2A, 1x 9V 1A, USB QC 3.0)",
+      "Entrada rápida 12V 3A DC Input",
+      "Incluye 2 cables dobles DC a DC, manual certificado y caja original"
+    ],
+    "specs": {
+      "tipo": "UPS en línea monofásico",
+      "potenciaNominal": "30W",
+      "energiaElectrica": "115.44 Wh",
+      "tipoBateria": "Batería de iones de litio de alta densidad",
+      "salidasDC": "ONU (12V 2A), Router 1 (12V 2A), Router 2 (9V 1A)",
+      "salidaUSB": "QC 3.0 (5V 3A / 9V 2A)",
+      "entradaDC": "12V 3A DC Input",
+      "proteccion": "Cortocircuito, sobretensión, sobredescarga térmica",
+      "peso": "1.116 kg",
+      "color": "Blanco perla",
+      "contenidoCaja": "Mini UPS WGP, 2 cables DC a DC, manual, certificado de calidad",
+      "aplicaciones": "Router WiFi, Módem fibra óptica (ONU), Switch, Cámaras de seguridad"
+    }
+  },
+  {
+    "id": "inversor-solar-hibrido-anern-6kw",
+    "name": "Inversor Solar Híbrido Anern 6kW / MPPT 160A",
+    "slug": "inversor-solar-hibrido-anern-6kw",
+    "brand": "Anern",
+    "model": "AN-FGI-S (Serie FGI-S6500)",
+    "category": "inversores",
+    "categoryLabel": "Inversores Solares Híbridos",
+    "tagline": "Potencia pura de 6000W con controlador MPPT integrado de 160A y 94% de eficiencia.",
+    "description": "Inversor cargador híbrido de última generación para sistemas residenciales y comerciales de respaldo ininterrumpido y energía solar. Integra controlador solar MPPT de 160A, pantalla LCD multifunción en tiempo real y compatibilidad inteligente para trabajar con paneles solares, baterías, red eléctrica o generador de combustible.",
+    "featured": true,
+    "inStock": true,
+    "price": 680,
+    "currency": "USD",
+    "warranty": "1 año de garantía oficial",
+    "rating": 4.9,
+    "reviewCount": 29,
+    "mainImage": "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM (5).jpeg",
+    "gallery": [
+      "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM (5).jpeg",
+      "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM (6).jpeg",
+      "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.56 AM (7).jpeg"
+    ],
+    "highlights": [
+      "Potencia continua nominal de 6000W / 6kW de onda sinusoidal pura",
+      "Controlador de carga solar MPPT incorporado de 160A",
+      "Alta eficiencia de conversión superior al 94%",
+      "Soporta bancos de baterías de 24V y 48V",
+      "Gestión híbrida cuádruple: Paneles solares + Red eléctrica + Generador + Baterías",
+      "Pantalla LCD interactiva con monitoreo de voltajes, consumo y estado"
+    ],
+    "specs": {
+      "tipo": "Convertidor DC/DC e Inversor DC/AC Híbrido Onda Pura",
+      "potenciaNominal": "6000W (6 kW)",
+      "voltajeEntradaBateria": "24V / 48V DC",
+      "corrienteSalida": "160A",
+      "frecuenciaSalida": "50 Hz / 60 Hz (detección automática)",
+      "eficiencia": "≥ 94%",
+      "tipoControlador": "MPPT de alta eficiencia 160A",
+      "pantalla": "LCD digital táctil circular a color",
+      "dimensiones": "527 x 435 x 138 mm",
+      "peso": "14.5 kg",
+      "puertosComunicacion": "COM, BMS, breaker de entrada",
+      "aplicaciones": "Respaldo total para hogares, oficinas, servidores, refrigeración y climatización"
+    }
+  }
+]
