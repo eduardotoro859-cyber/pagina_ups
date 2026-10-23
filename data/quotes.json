@@ -1,5 +1,39 @@
 [
   {
+    "id": "COT-2026-6376",
+    "createdAt": "2026-10-23T16:00:04.278Z",
+    "status": "pendiente",
+    "client": {
+      "name": "Leandro Medina",
+      "email": "leandro094875@gmail.com",
+      "phone": "04246569459",
+      "city": "Valencia Carabobo",
+      "needsShipping": false
+    },
+    "items": [
+      {
+        "productId": "mini-ups-shanpu-dc1018p",
+        "productName": "Mini UPS DC Shanpu DC1018P (10400 mAh)",
+        "model": "DC1018P-10400mAh",
+        "brand": "Shanpu",
+        "image": "images/new_pic/WhatsApp Image 2026-10-15 at 7.56.55 AM.jpeg",
+        "warranty": "6 meses de garantía directa",
+        "price": 40,
+        "quantity": 1,
+        "total": 40
+      }
+    ],
+    "grandTotal": 40,
+    "currency": "USD",
+    "internalNotes": "",
+    "history": [
+      {
+        "action": "Cotización automática generada y enviada al cliente",
+        "timestamp": "2026-10-23T16:00:04.278Z"
+      }
+    ]
+  },
+  {
     "id": "COT-2026-6911",
     "createdAt": "2026-10-21T14:01:34.064Z",
     "status": "pendiente",

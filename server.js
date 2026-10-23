@@ -10,7 +10,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-pin']
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -20,6 +24,11 @@ app.use(express.static(path.join(__dirname)));
 // Rutas de API
 app.use('/api/products', productsRouter);
 app.use('/api/quotes', quotesRouter);
+
+// Acceso directo amigable a cotizaciones oficiales
+app.get('/cotizacion/:id', (req, res) => {
+  res.redirect(`/api/quotes/${req.params.id}/document`);
+});
 
 // Endpoint de configuración pública
 app.get('/api/config', (req, res) => {
@@ -40,10 +49,9 @@ app.get('/api/health', (req, res) => {
 
 // Iniciar servidor
 app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`⚡ Servidor de PowerUPS iniciado exitosamente`);
-  console.log(`🌐 Acceso Web: http://localhost:${PORT}`);
-  console.log(`📦 API de Productos: http://localhost:${PORT}/api/products`);
-  console.log(`📋 API de Cotizaciones: http://localhost:${PORT}/api/quotes`);
+  console.log(`[PowerUPS] Servidor iniciado exitosamente`);
+  console.log(`[Web] http://localhost:${PORT}`);
+  console.log(`[API Productos] http://localhost:${PORT}/api/products`);
+  console.log(`[API Cotizaciones] http://localhost:${PORT}/api/quotes`);
   console.log(`====================================================`);
 });

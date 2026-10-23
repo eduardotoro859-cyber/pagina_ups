@@ -33,8 +33,8 @@ async function sendOfficialQuoteEmail(quote) {
   });
 
   const shippingText = quote.client.needsShipping
-    ? '<span style="color: #0284c7; font-weight: bold;">📦 Requiere Envío Nacional (MRW / Zoom / Tealca)</span>'
-    : '<span style="color: #10b981; font-weight: bold;">🏬 Retiro en Tienda / Entrega Local</span>';
+    ? '<span style="color: #0284c7; font-weight: bold;">Envío Nacional Asegurado (MRW / Zoom / Tealca)</span>'
+    : '<span style="color: #10b981; font-weight: bold;">Retiro en Tienda / Entrega Local</span>';
 
   let itemsRowsHtml = '';
   quote.items.forEach((it, idx) => {
@@ -68,7 +68,7 @@ async function sendOfficialQuoteEmail(quote) {
         <table style="width: 100%; border-collapse: collapse;">
           <tr>
             <td>
-              <h1 style="margin: 0; font-size: 24px; color: #38bdf8; letter-spacing: -0.5px;">⚡ PowerUPS</h1>
+              <h1 style="margin: 0; font-size: 24px; color: #38bdf8; letter-spacing: -0.5px;">PowerUPS</h1>
               <p style="margin: 4px 0 0 0; font-size: 13px; color: #cbd5e1;">Soluciones de Respaldo Energético & Mini UPS</p>
             </td>
             <td style="text-align: right;">
@@ -88,9 +88,9 @@ async function sendOfficialQuoteEmail(quote) {
             <td style="vertical-align: top; width: 50%;">
               <p style="margin: 0; font-size: 12px; text-transform: uppercase; color: #64748b; font-weight: bold;">Cotizado a:</p>
               <h3 style="margin: 4px 0 2px 0; color: #0f172a; font-size: 17px;">${quote.client.name}</h3>
-              <p style="margin: 0; color: #475569; font-size: 13px;">📞 ${quote.client.phone}</p>
-              <p style="margin: 0; color: #475569; font-size: 13px;">✉️ ${quote.client.email}</p>
-              <p style="margin: 0; color: #475569; font-size: 13px;">📍 ${quote.client.city}</p>
+              <p style="margin: 0; color: #475569; font-size: 13px;"><strong>Teléfono:</strong> ${quote.client.phone}</p>
+              <p style="margin: 0; color: #475569; font-size: 13px;"><strong>Correo:</strong> ${quote.client.email}</p>
+              <p style="margin: 0; color: #475569; font-size: 13px;"><strong>Ciudad:</strong> ${quote.client.city}</p>
             </td>
             <td style="vertical-align: top; text-align: right; width: 50%;">
               <p style="margin: 0; font-size: 12px; text-transform: uppercase; color: #64748b; font-weight: bold;">Fecha de Emisión:</p>
@@ -136,7 +136,7 @@ async function sendOfficialQuoteEmail(quote) {
         <!-- Botón de Confirmación -->
         <div style="text-align: center; margin-top: 10px;">
           <a href="${waReplyUrl}" target="_blank" style="background: #25d366; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: bold; font-size: 15px; display: inline-block; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);">
-            💬 Confirmar Pedido o Consultar por WhatsApp
+            Confirmar Pedido o Consultar por WhatsApp
           </a>
         </div>
       </div>
@@ -157,7 +157,7 @@ async function sendOfficialQuoteEmail(quote) {
     await transporter.sendMail({
       from: `"PowerUPS Cotizaciones" <${fromEmail}>`,
       to: quote.client.email,
-      subject: `📄 Cotización Formal [${quote.id}] - PowerUPS ($${grandTotal} USD)`,
+      subject: `Cotización Formal [${quote.id}] - PowerUPS ($${grandTotal} USD)`,
       html: quoteHtml
     });
     console.log(`[EmailService] Cotización formal enviada a ${quote.client.email}`);
@@ -168,7 +168,7 @@ async function sendOfficialQuoteEmail(quote) {
     await transporter.sendMail({
       from: `"PowerUPS Sistema" <${fromEmail}>`,
       to: companyEmail,
-      subject: `🚨 [NUEVA COTIZACIÓN GENERADA ${quote.id}] - ${quote.client.name} ($${grandTotal} USD)`,
+      subject: `[Nueva Cotización ${quote.id}] - ${quote.client.name} ($${grandTotal} USD)`,
       html: `
         <div style="padding: 10px; background: #e0f2fe; border: 1px solid #0284c7; border-radius: 6px; margin-bottom: 14px;">
           <strong>Alerta de Empresa:</strong> Se ha generado y enviado automáticamente la siguiente cotización a ${quote.client.name} (${quote.client.phone}).
@@ -181,6 +181,46 @@ async function sendOfficialQuoteEmail(quote) {
   return { sent: true };
 }
 
+/**
+ * Envía un correo personalizado redactado por la administración al cliente
+ */
+async function sendCustomAdminEmail(quote, subject, customMessage) {
+  const transporter = getTransporter();
+  const fromEmail = process.env.EMAIL_FROM || process.env.SMTP_USER || 'ventas@powerups.com';
+  const cleanSubject = subject || `Cotización [${quote.id}] - PowerUPS`;
+
+  if (!transporter) {
+    console.log(`[EmailService] (Modo demostración / SMTP no configurado) Correo para ${quote.client.email}: ${cleanSubject}`);
+    return { sent: false, reason: 'smtp_not_configured', simulated: true };
+  }
+
+  const html = `
+    <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 640px; margin: 0 auto; border: 1px solid #cbd5e1; border-radius: 12px; overflow: hidden; background: #ffffff;">
+      <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; padding: 22px 28px;">
+        <h2 style="margin: 0; color: #38bdf8; font-size: 20px;">PowerUPS • Respuesta Comercial</h2>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #cbd5e1;">Referencia: Cotización [${quote.id}]</p>
+      </div>
+      <div style="padding: 24px 28px; color: #1e293b; font-size: 15px; line-height: 1.6; white-space: pre-line;">
+        ${(customMessage || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
+      </div>
+      <div style="background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 14px 28px; text-align: center; font-size: 12px; color: #64748b;">
+        PowerUPS Soluciones de Respaldo Energético • Atención y Soporte al Cliente
+      </div>
+    </div>
+  `;
+
+  await transporter.sendMail({
+    from: `"PowerUPS Ventas" <${fromEmail}>`,
+    to: quote.client.email,
+    subject: cleanSubject,
+    text: customMessage,
+    html
+  });
+
+  return { sent: true };
+}
+
 module.exports = {
-  sendOfficialQuoteEmail
+  sendOfficialQuoteEmail,
+  sendCustomAdminEmail
 };

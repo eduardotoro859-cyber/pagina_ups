@@ -85,11 +85,9 @@
 									</div>
 
 									<!-- Grid de Productos -->
-									<div id="catalog-grid" class="row">
-										<!-- Se cargará dinámicamente desde /api/products -->
+									<div id="catalog-grid" class="row" data-process-loader="Cargando catálogo de productos...">
 										<div class="col-12" style="text-align: center; padding: 50px;">
-											<i class="icon solid fa-spinner fa-spin" style="font-size: 32px; color: #0284c7;"></i>
-											<p style="margin-top: 10px; color: #64748b;">Cargando catálogo de productos...</p>
+											<p style="color: #64748b;">Cargando catálogo de productos...</p>
 										</div>
 									</div>
 
@@ -146,6 +144,8 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/lottie.min.js"></script>
+			<script src="assets/js/process-loader.js"></script>
 			<script src="assets/js/quote-cart.js?v=7"></script>
 
 		<!-- Lógica del Catálogo Dinámico -->

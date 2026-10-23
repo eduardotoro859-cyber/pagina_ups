@@ -984,3 +984,108 @@ button.alt:hover,
     grid-template-columns: 48px 1fr auto;
   }
 }
+
+/* ==========================================================================
+   WhatsApp Direct Contact Widget (Sección FAQ y Asesoría Técnica)
+   ========================================================================== */
+.faq-wa-help-card {
+  margin-top: 14px;
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
+  box-sizing: border-box;
+}
+
+.faq-wa-help-card:hover {
+  border-color: #86efac;
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.16);
+  transform: translateY(-2px);
+}
+
+.faq-wa-header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.faq-wa-icon-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(34, 197, 94, 0.35);
+  animation: waPulse 2.5s infinite;
+}
+
+@keyframes waPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.faq-wa-copy {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.faq-wa-copy strong {
+  color: #0f172a;
+  font-size: 0.95em;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.faq-wa-copy span {
+  color: #475569;
+  font-size: 0.82em;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
+.faq-wa-link-btn {
+  all: unset !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background: #16a34a !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 0.9em !important;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 6px rgba(22, 163, 74, 0.3) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.faq-wa-link-btn:hover {
+  background: #15803d !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4) !important;
+}
+
